@@ -1,4 +1,4 @@
-<template>
+  <template>
   <div class="container">
     <div class="task">
       <!-- title -->
@@ -20,7 +20,13 @@
       <!-- task lists -->
       <div class="taskItems">
         <ul>
-          <TaskItem @complete="completedTask(task)" @remove="removeTask(index)" v-bind:task="task" v-for="(task, index) in tasks" :key="task.id" />
+          <TaskItem
+            @complete="completedTask(task)"
+            @remove="removeTask(index)"
+            v-bind:task="task"
+            v-for="(task, index) in tasks"
+            :key="task.id"
+          />
         </ul>
       </div>
 
@@ -52,13 +58,8 @@ export default {
       newTask: "",
       tasks: [
         {
-          id: 1,
-          title: "Learn Vue JS",
-          completed: true,
-        },
-        {
           id: 2,
-          title: "Watch netflix",
+          title: "Work on Project",
           completed: true,
         },
         {
@@ -90,31 +91,29 @@ export default {
         this.newTask = "";
       }
     },
-    inProgress: function (task) {
+    inProgress(task) {
       return !this.isCompleted(task);
     },
-    isCompleted: function (task) {
+    isCompleted(task) {
       return task.completed;
     },
-    clearCompleted: function () {
+    clearCompleted() {
       this.tasks = this.tasks.filter(this.inProgress);
     },
-    clearAll: function () {
+    clearAll() {
       this.tasks = [];
     },
-    removeTask(index){
-      this.tasks.splice(index, 1)
+    removeTask(index) {
+      this.tasks.splice(index, 1);
     },
-    completedTask(task){
-      task.completed = !task.completed
-  
-    }
+    completedTask(task) {
+      task.completed = !task.completed;
+    },
   },
   computed: {
     incompleted() {
       return this.tasks.filter(this.inProgress).length;
     },
-
   },
 };
 </script>

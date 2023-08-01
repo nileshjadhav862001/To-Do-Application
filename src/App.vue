@@ -1,16 +1,18 @@
 <template>
   <div id="app">
-
+    
 
     <!-- <HelloWorld /> -->
     <TaskComp v-bind:tasks="tasks"/>
-
+    <!-- <RouterComp/> -->
+    
   </div>
 </template>
 
 <script>
 // import HelloWorld from './components/HelloWorld.vue'
 import TaskComp from './components/TaskComp.vue'
+// import RouterComp from './components/RouterComp.vue'
 
 
 export default {
@@ -18,16 +20,12 @@ export default {
   components: {
     // HelloWorld,
     TaskComp,
+    // RouterComp
 
   },
   data() {
     return {
       tasks: [
-        {
-          id: 1,
-          title: "mearn kjfd Vue JS",
-          completed: true,
-        },
         {
           id: 2,
           title: "Watch netflix",

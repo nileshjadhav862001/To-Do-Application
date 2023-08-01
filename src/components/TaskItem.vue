@@ -11,6 +11,7 @@
 export default {
   name: "TaskItem",
   props: ["task"],
+  
   methods:{
 
   },
@@ -20,7 +21,6 @@ export default {
       if(this.task.completed){
         classes.push('toggle-completed')
       }
-
       return classes
     }
   }
