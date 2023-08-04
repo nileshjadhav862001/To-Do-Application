@@ -1,8 +1,8 @@
 <template>
   <div class="container">
     <li>
-      <button @click="$emit('complete')" v-bind:class="className"><i class="far fa-circle"></i>{{ task.title }}</button>
-      <button @click="$emit('remove')"><i class="far fa-trash-alt"></i></button>
+      <button @click="complete" :class="{ 'toggle': true, 'toggle-completed': task.completed }"><i class="far fa-circle"></i>{{ task.title }}</button>
+      <button @click="remove"><i class="far fa-trash-alt"></i></button>
     </li>
   </div>
 </template>
@@ -14,15 +14,21 @@ export default {
   
   methods:{
 
+    complete(){
+      this.$emit('complete')
+    },
+    remove(){
+      this.$emit('remove')
+    }
   },
   computed:{
-    className(){
-      let classes = ['toggle']
-      if(this.task.completed){
-        classes.push('toggle-completed')
-      }
-      return classes
-    }
+    // className(){
+    //   let classes = ['toggle']
+    //   if(this.task.completed){
+    //     classes.push('toggle-completed')
+    //   }
+    //   return classes
+    // }
   }
 };
 </script>

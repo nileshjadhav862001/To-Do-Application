@@ -1,4 +1,4 @@
-  <template>
+<template>
   <div class="container">
     <div class="task">
       <!-- title -->
@@ -8,25 +8,15 @@
 
       <!-- form -->
       <div class="form">
-        <input
-          type="text"
-          placeholder="New Task"
-          v-model="newTask"
-          @keypress.enter="addTask"
-        />
+        <input type="text" placeholder="New Task" v-model="newTask" @keypress.enter="addTask" />
         <button @click="addTask"><i class="fas fa-plus"></i></button>
       </div>
 
       <!-- task lists -->
       <div class="taskItems">
         <ul>
-          <TaskItem
-            @complete="completedTask(task)"
-            @remove="removeTask(index)"
-            v-bind:task="task"
-            v-for="(task, index) in tasks"
-            :key="task.id"
-          />
+          <TaskItem @complete="completedTask(task)" @remove="removeTask(index)" v-bind:task="task"
+            v-for="(task, index) in tasks" :key="task.id" />
         </ul>
       </div>
 
