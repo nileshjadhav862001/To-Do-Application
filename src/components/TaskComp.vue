@@ -19,7 +19,6 @@
             v-for="(task, index) in tasks" :key="task.id" />
         </ul>
       </div>
-
       <!-- buttons -->
       <div class="clearBtns">
         <button @click="clearCompleted">Clear completed</button>

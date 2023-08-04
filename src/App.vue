@@ -1,7 +1,6 @@
 <template>
   <div id="app">
     <!-- <HelloWorld /> -->
-    <!-- this is new branch that i created -->
     <TaskComp/>
   </div>
 </template>
