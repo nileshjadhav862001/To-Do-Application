@@ -1,25 +1,12 @@
 <template>
   <div id="app">
-    
-
     <!-- <HelloWorld /> -->
-    <TaskComp v-bind:tasks="tasks"/>
-
-    <div class="task-list">
-      <div v-for="number in taskStore.numbers" :key="number">
-      {{ number.name }}</div>
-    </div>
-    <!-- <RouterComp/> -->
-    
+    <TaskComp/>
   </div>
 </template>
 
 <script>
-import {useTaskStore} from './Store/Store.js'
-// import HelloWorld from './components/HelloWorld.vue'
 import TaskComp from './components/TaskComp.vue'
-// import RouterComp from './components/RouterComp.vue'
-
 
 export default {
   name: 'App',
@@ -55,10 +42,6 @@ export default {
       ],
     };
   },
-  setup(){
-    const taskStore = useTaskStore
-    return {taskStore}
-  }
 }
 </script>
 
