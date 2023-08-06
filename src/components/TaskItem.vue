@@ -1,10 +1,10 @@
 <template>
   <div class="container">
-    <li>
-      <button @click="complete" :class="{ 'toggle': true, 'toggle-completed': task.completed }"><i class="far fa-circle"></i>{{ task.title }}</button>
-      <button @click="remove"><i class="far fa-trash-alt"></i></button>
+    <li v-for="(task1, index) in newTasks" :key="task1.id">
+      <button @click="completedTask(task1)" :class="{ 'toggle': true, 'toggle-completed': task1.completed }"><i
+          class="far fa-circle"></i>{{ task1.title }}</button>
+      <button @click="remove(index)"><i class="far fa-trash-alt"></i></button>
     </li>
-    {{ newTasks }}
   </div>
 </template>
 
@@ -14,26 +14,11 @@ import { useCounterStore } from "../store/index.js";
 
 export default {
   name: "TaskItem",
-  props: ["task"],
-  
-  methods:{
-    ...mapActions(useCounterStore,['increment','decrease0']),
-    complete(){
-      this.$emit('complete')
-    },
-    remove(){
-      this.$emit('remove')
-    }
+  methods: {
+    ...mapActions(useCounterStore, ['remove', 'completedTask']),
   },
-  computed:{
-    ...mapState(useCounterStore,['newTasks']),
-    // className(){
-    //   let classes = ['toggle']
-    //   if(this.task.completed){
-    //     classes.push('toggle-completed')
-    //   }
-    //   return classes
-    // }
+  computed: {
+    ...mapState(useCounterStore, ['newTasks', 'className']),
   }
 };
 </script>
@@ -41,5 +26,9 @@ export default {
 <style scoped>
 .container {
   color: rgb(19, 10, 10);
+}
+
+.toggle-completed {
+  text-decoration: line-through;
 }
 </style>

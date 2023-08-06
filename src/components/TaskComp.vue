@@ -1,108 +1,66 @@
 <template>
   <div class="container">
     <div class="task">
-      <!-- title -->
+
       <div class="title">
-        <h1>To Do List</h1>
+        <h1>To Do List V2</h1>
       </div>
 
-      <!-- form -->
       <div class="form">
         <input type="text" placeholder="New Task" v-model="newTask" @keypress.enter="addTask" />
         <button @click="addTask"><i class="fas fa-plus"></i></button>
       </div>
 
-      <!-- task lists -->
       <div class="taskItems">
         <ul>
-          <TaskItem @complete="completedTask(task)" @remove="removeTask(index)" v-bind:task="task"
-            v-for="(task, index) in tasks" :key="task.id" />
+          <TaskItem />
         </ul>
       </div>
-      <!-- buttons -->
+
       <div class="clearBtns">
         <button @click="clearCompleted">Clear completed</button>
         <button @click="clearAll">Clear all</button>
       </div>
 
-      <!-- pending task -->
       <div class="pendingTasks">
         <span>Pending Tasks: {{ incompleted }}</span>
       </div>
+      
     </div>
   </div>
 </template>
 
 <script>
+import { mapActions, mapState } from "pinia";
+import { useCounterStore } from "../store/index.js";
 import TaskItem from "./TaskItem.vue";
 
 export default {
   name: "TaskComp",
-  // props: ["tasks"],
   components: {
     TaskItem,
   },
   data() {
     return {
       newTask: "",
-      tasks: [
-        {
-          id: 2,
-          title: "Work on Project",
-          completed: true,
-        },
-        {
-          id: 3,
-          title: "Go shopping",
-          completed: true,
-        },
-        {
-          id: 4,
-          title: "Learn guitar",
-          completed: false,
-        },
-        {
-          id: 5,
-          title: "Send email",
-          completed: false,
-        },
-      ],
     };
   },
 
   methods: {
+    ...mapActions(useCounterStore, ['addTask', 'clearAll']),
+
     addTask() {
       if (this.newTask) {
-        this.tasks.push({
+        this.newTasks.push({
           title: this.newTask,
           completed: false,
         });
         this.newTask = "";
       }
     },
-    inProgress(task) {
-      return !this.isCompleted(task);
-    },
-    isCompleted(task) {
-      return task.completed;
-    },
-    clearCompleted() {
-      this.tasks = this.tasks.filter(this.inProgress);
-    },
-    clearAll() {
-      this.tasks = [];
-    },
-    removeTask(index) {
-      this.tasks.splice(index, 1);
-    },
-    completedTask(task) {
-      task.completed = !task.completed;
-    },
   },
   computed: {
-    incompleted() {
-      return this.tasks.filter(this.inProgress).length;
-    },
+    ...mapState(useCounterStore, ['newTasks', 'incompleted', 'clearCompleted']),
   },
 };
 </script>
