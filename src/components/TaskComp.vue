@@ -22,9 +22,16 @@
         <button @click="clearAll">Clear all</button>
       </div>
 
-      <div class="pendingTasks">
-        <span>Pending Tasks: {{ incompleted }}</span>
+      <div class="count">
+
+        <div class="pendingTasks">
+          <span>Pending Tasks: {{ incompleted }}</span>
+        </div>
+        <div class="totalTask">
+          <span>Total Tasks: {{ totalTask }}</span>
+        </div>
       </div>
+      <!-- Total task : {{ totalTask }} -->
       
     </div>
   </div>
@@ -47,7 +54,7 @@ export default {
   },
 
   methods: {
-    ...mapActions(useCounterStore, ['addTask', 'clearAll']),
+    ...mapActions(useCounterStore, ['addTask', 'clearAll',]),
 
     addTask() {
       if (this.newTask) {
@@ -60,7 +67,7 @@ export default {
     },
   },
   computed: {
-    ...mapState(useCounterStore, ['newTasks', 'incompleted', 'clearCompleted']),
+    ...mapState(useCounterStore, ['newTasks', 'incompleted', 'clearCompleted','totalTask']),
   },
 };
 </script>
@@ -195,5 +202,9 @@ ul {
   list-style: none;
   margin: 0;
   padding: 0;
+}
+.count{
+  display: flex;
+  justify-content: space-between;
 }
 </style>

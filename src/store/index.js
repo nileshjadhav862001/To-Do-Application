@@ -1,11 +1,11 @@
 // import TaskCompVue from '@/components/TaskComp.vue'
 import { defineStore } from 'pinia'
 export const useCounterStore = defineStore('counter', {
-  state: () => ({ 
+  state: () => ({
     // Data Property
     newTask: "",
     newTasks: [
-      { 
+      {
         id: 2,
         title: "Learn Pinia",
         completed: true,
@@ -27,33 +27,37 @@ export const useCounterStore = defineStore('counter', {
     className() {
       // let classes = ['toggle']
       // if (this.newTasks.completed) {
-        //   classes.push('toggle-completed')
-        // }
-        // return 'example'           //classes
-      },
-      incompleted() {
-        return this.newTasks.filter(this.inProgress).length;
-      },
+      //   classes.push('toggle-completed')
+      // }
+      // return 'example'           //classes
     },
-    actions: {
-      // Methods Property
-      inProgress(task) {
-        return !this.isCompleted(task);
-      },
-      isCompleted(task) {
-        return task.completed;
-      },
-    remove(index){
+    incompleted() {
+      return this.newTasks.filter(this.inProgress).length;
+    },
+    totalTask() {
+      return this.newTasks.length
+    },
+  },
+  actions: {
+    // Methods Property
+
+    inProgress(task) {
+      return !this.isCompleted(task);
+    },
+    isCompleted(task) {
+      return task.completed;
+    },
+    remove(index) {
       this.newTasks.splice(index, 1)
     },
-    completedTask(task1){
+    completedTask(task1) {
       task1.completed = !task1.completed
     },
 
     clearCompleted() {
       this.newTasks = this.newTasks.filter(this.inProgress);
     },
-    clearAll(){
+    clearAll() {
       this.newTasks = [];
     }
   },
